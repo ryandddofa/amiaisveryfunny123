@@ -13,16 +13,19 @@ export default class MenuScene extends Phaser.Scene {
 
     create() {
         // Fond
-        this.add.image(320, 180, 'menu-bg').setDisplaySize(640, 360);
+        const bg = this.add.image(320, 180, 'menu-bg').setDisplaySize(640, 360);
+        bg.setAlpha(0.75);
+        bg.setOrigin(0.5);
 
         // Logo centré
-        this.add.image(320, 120, 'menu-logo');
+        const logo = this.add.image(320, 180, 'menu-logo');
 
         // Texte "Tap to start" avec tween d'opacité
         const startText = this.add.text(320, 280, 'tap to start playing cawliss', {
             fontSize: '16px',
             color: '#ffffff',
-            fontStyle: 'bold',
+            fontFamily: 'Arial, sans-serif',
+            resolution: 2,
         }).setOrigin(0.5);
 
         // Tween d'opacité
@@ -30,6 +33,16 @@ export default class MenuScene extends Phaser.Scene {
             targets: startText,
             alpha: 0.3,
             duration: 1000,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
+        this.tweens.add({
+            targets: logo,
+            y: "+=-10",
+            angle: -1,
+            duration: 800,
             yoyo: true,
             repeat: -1,
             ease: 'Sine.easeInOut'

@@ -7,6 +7,19 @@ export default class Level1Scene extends Phaser.Scene {
     }
 
     preload() {
+        const wipeRect = this.add.rectangle(320, 180, 640, 360, 0x000000);
+        wipeRect.setDepth(1000);
+
+        this.tweens.add({
+            targets: wipeRect,
+            x: 960, // Hors écran à droite
+            duration: 800,
+            ease: 'Power2',
+            onComplete: () => {
+                wipeRect.destroy();
+            }
+        });
+
         // Charger le fond
         this.load.image('alley-bg', 'assets/backgrounds/alley-bg.png');
 

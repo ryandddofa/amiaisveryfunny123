@@ -22,10 +22,11 @@ export default class UIScene extends Phaser.Scene {
     graphics.strokeCircle(560, 280, 40);
 
     // Texte sur le bouton
-    this.add.text(560, 280, '↑', {
-      fontSize: '24px',
+    this.add.text(560, 260, '↑', {
+      fontSize: '68px',
       color: '#ffffff',
-      fontStyle: 'bold'
+      fontStyle: 'bold',
+      resolution: 2,
     }).setOrigin(0.5);
 
     // Zone interactive
