@@ -8,7 +8,7 @@ export default class UIScene extends Phaser.Scene {
 
   create() {
     // Joystick virtuel (gauche de l'écran)
-    this.joystick = new VirtualJoystick(this, 80, 560);
+    this.joystick = new VirtualJoystick(this, 80, 280);
 
     // Bouton de saut (droite de l'écran)
     this.createJumpButton();
@@ -17,49 +17,49 @@ export default class UIScene extends Phaser.Scene {
   createJumpButton() {
     const graphics = this.add.graphics();
     graphics.fillStyle(0xff0000, 0.5);
-    graphics.fillCircle(280, 560, 40);
+    graphics.fillCircle(560, 280, 40);
     graphics.lineStyle(3, 0xffffff, 1);
-    graphics.strokeCircle(280, 560, 40);
+    graphics.strokeCircle(560, 280, 40);
 
     // Texte sur le bouton
-    this.add.text(280, 560, 'A', {
+    this.add.text(560, 280, '↑', {
       fontSize: '24px',
       color: '#ffffff',
       fontStyle: 'bold'
     }).setOrigin(0.5);
 
     // Zone interactive
-    const jumpZone = this.add.zone(280, 560, 80, 80).setInteractive();
+    const jumpZone = this.add.zone(560, 280, 80, 80).setInteractive();
 
     let jumpPointer = null;
 
-  jumpZone.on('pointerdown', (pointer) => {
-    if (!jumpPointer) { // ← Seulement si pas déjà pressé
-      jumpPointer = pointer.id;
-      const inputs = this.registry.get('playerInputs');
-      inputs.jump = true;
-      this.registry.set('playerInputs', inputs);
-    }
-  });
+    jumpZone.on('pointerdown', (pointer) => {
+      if (!jumpPointer) { // ← Seulement si pas déjà pressé
+        jumpPointer = pointer.id;
+        const inputs = this.registry.get('playerInputs');
+        inputs.jump = true;
+        this.registry.set('playerInputs', inputs);
+      }
+    });
 
-  jumpZone.on('pointerup', (pointer) => {
-    if (jumpPointer === pointer.id) { // ← Vérifie l'ID
-      jumpPointer = null;
-      const inputs = this.registry.get('playerInputs');
-      inputs.jump = false;
-      this.registry.set('playerInputs', inputs);
-    }
-  });
+    jumpZone.on('pointerup', (pointer) => {
+      if (jumpPointer === pointer.id) { // ← Vérifie l'ID
+        jumpPointer = null;
+        const inputs = this.registry.get('playerInputs');
+        inputs.jump = false;
+        this.registry.set('playerInputs', inputs);
+      }
+    });
 
-  this.input.on('pointerup', (pointer) => { // ← Fallback global
-    if (jumpPointer === pointer.id) {
-      jumpPointer = null;
-      const inputs = this.registry.get('playerInputs');
-      inputs.jump = false;
-      this.registry.set('playerInputs', inputs);
-    }
-  });
-}
+    this.input.on('pointerup', (pointer) => { // ← Fallback global
+      if (jumpPointer === pointer.id) {
+        jumpPointer = null;
+        const inputs = this.registry.get('playerInputs');
+        inputs.jump = false;
+        this.registry.set('playerInputs', inputs);
+      }
+    });
+  }
 
   update() {
     if (this.joystick) {

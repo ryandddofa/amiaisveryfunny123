@@ -1,0 +1,43 @@
+import Phaser from 'phaser';
+
+export default class MenuScene extends Phaser.Scene {
+    constructor() {
+        super({ key: 'MenuScene' });
+    }
+
+    preload() {
+        // Charger les images du menu
+        this.load.image('menu-bg', 'assets/backgrounds/menu-bg.png');
+        this.load.image('menu-logo', 'assets/backgrounds/menu-logo.png');
+    }
+
+    create() {
+        // Fond
+        this.add.image(320, 180, 'menu-bg').setDisplaySize(640, 360);
+
+        // Logo centré
+        this.add.image(320, 120, 'menu-logo');
+
+        // Texte "Tap to start" avec tween d'opacité
+        const startText = this.add.text(320, 280, 'tap to start playing cawliss', {
+            fontSize: '16px',
+            color: '#ffffff',
+            fontStyle: 'bold',
+        }).setOrigin(0.5);
+
+        // Tween d'opacité
+        this.tweens.add({
+            targets: startText,
+            alpha: 0.3,
+            duration: 1000,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
+        // Détecter le tap/click
+        this.input.once('pointerdown', () => {
+            this.scene.start('Intro1Scene');
+        });
+    }
+}
