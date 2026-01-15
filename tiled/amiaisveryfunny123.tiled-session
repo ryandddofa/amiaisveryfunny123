@@ -1,0 +1,61 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map1.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "City background.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Decoration 32x32.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "GandalfHardcore city tiles 32x32.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "map1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1150,
+                "y": 477.33333333333326
+            }
+        },
+        "map1.tmx#City background": {
+            "scaleInDock": 1
+        },
+        "map1.tmx#Decoration 32x32": {
+            "scaleInDock": 1
+        },
+        "map1.tmx#GandalfHardcore city tiles 32x32": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/rwnd/Desktop/amiaisveryfunny123/tiled",
+    "last.imagePath": "C:/Users/rwnd/Desktop/amiaisveryfunny123/tiled",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 60,
+    "openFiles": [
+        "map1.tmx",
+        "GandalfHardcore city tiles 32x32.tsx",
+        "Decoration 32x32.tsx",
+        "City background.tsx"
+    ],
+    "project": "amiaisveryfunny123.tiled-project",
+    "recentFiles": [
+        "City background.tsx",
+        "Decoration 32x32.tsx",
+        "GandalfHardcore city tiles 32x32.tsx",
+        "map1.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}

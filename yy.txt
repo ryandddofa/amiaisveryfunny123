@@ -1,0 +1,40 @@
+J'ai un nouveau projet Web. Cette fois-ci, c'est un projet de jeu html avec Phaser. Je voudrais faire un jeu en pixel art, en 2D,
+rpgmaker-style, dialogues visual novel style, en side scroller (un peu comme mario). 
+Une grosse partie important à comprendre de ce projet est que celui-ci est mobile-first. Dans le sens que, c'est un jeu destiné
+aux appareils mobiles (plus spécifiquement l'iphone 16 mais bien sur il faudrait que ce soit adapté aux plus anciens iphone etc..)
+Et ça implique donc qu'il faut coder en conscience que c'est un jeu mobile (bien que ce serait cool d'avoir un fallback pc, si possible,
+comme par exemple avoir wasd etc.. etc..).
+
+J'ai déjà setup le projet de base avec
+nodejs phaser+vite (npm install -D vite, npm install phaser). J'ai quelques connaissances en phaser, depuis un contexte académique,
+mais dont j'ai beaucoup oublié puisque ça fait quelques temps. Je sais qu'il va probablement falloir utiliser Tiled, gérer des collisions,
+utiliser/trouver des sprite sheets/assets, etc... 
+
+Nous devrions probablement commencer par setup les bases du jeu non? Du genre avoir le player,
+établir les mouvements par joystick visuels/buttons visuels etc.. etc.. système de caméra, scènes, collisions, gravité/physique etc..
+
+Le jeu est destiné comme cadeau pour ma copine pour la St-Valentin, l'histoire est comme ce suit (pour plus de contexte,
+établir ce dont nous aurons potentiellement besoin):
+Le joueur incarne "Amia" la copine de "Ryan". Le jeu commence au McDonald.
+Les 2 parlent avec leurs ami, qui est un chien s'appelant "Gia".
+Tout d'un coup on entend des cris dans la ville, le trio sort dehors pour voir
+que la ville est en fumée, avec du feu est des explosions partout. À l'horizon,
+ils appercoivent la cause de ce grabuge : Le chat de Ryan, "Funny" est devenu
+une sorte de chat géant cracheur de feux aux yeux lasers (référence à godzilla).
+Funny cours vers Ryan et le kidnappe. Et donc Amia et Gia traversent différents endroits de
+la ville (endroits marquant leur relation amoureuse, amia et ryan) pour combattre/esquiver
+les mini chats (mario-like, comme des goombas) des habitants qui se sont échappés pour former une secte d'admiration auprès de
+Funny, le géant chat cracheur de feu aux yeux lasers.
+Voici les différents endroits (en ordre)
+Allée derrière le McDonald,
+Le parc,
+Maison de Ryan,
+Le bus,
+La maison de Amia.
+L'histoire se finit comme tel :
+On apprend que c'est Gia, le chien qui suit tout au long de l'aventure Amia,
+qui a donné un milkshake à la menthe à funny le chat, ce qui l'a transformé
+en chat cracheur de flâme aux yeux lasers. Et donc Amia affronte Funny en lui donnant
+un ramen, ce qui rend le chat normal, et libère Ryan.
+
+Très important aussi, ne me fait pas d'artefacts/documents Claude, donne moi les morceaux de code séparément.

@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import GameScene from './scenes/GameScene.js';
+import UIScene from './scenes/UIScene.js';
 
 const config = {
   type: Phaser.AUTO,
@@ -6,35 +8,22 @@ const config = {
   width: 360,
   height: 640,
   pixelArt: true,
-  backgroundColor: '#000000',
+  backgroundColor: '#87CEEB',
+  input: {
+    activePointers: 3
+  },
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 800 },
+      debug: true
+    }
+  },
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
-  scene: {
-    preload,
-    create,
-    update
-  }
+  scene: [GameScene, UIScene]
 };
-
-let player;
-
-function preload() {
-  // Example: this.load.image('player', 'assets/player.png');
-}
-
-function create() {
-  // Example placeholder: simple graphics
-  const graphics = this.add.graphics();
-  graphics.fillStyle(0xffffff, 1);
-  graphics.fillRect(160, 280, 40, 40);
-
-  this.add.text(10, 10, 'Hello Phaser', { fontSize: '16px', color: '#ffffff' });
-}
-
-function update(time, delta) {
-  // Game loop
-}
 
 new Phaser.Game(config);
