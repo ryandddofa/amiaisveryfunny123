@@ -45,7 +45,7 @@ export default class MenuScene extends Phaser.Scene {
             duration: 800,
             yoyo: true,
             repeat: -1,
-            ease: 'Sine.easeInOut'
+            ease: 'Sine.easeIn'
         });
 
         // Détecter le tap/click

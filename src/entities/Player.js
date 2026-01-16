@@ -10,8 +10,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // Propriétés du joueur
         this.setCollideWorldBounds(true);
         this.setBounce(0.1);
-        this.speed = 200;
-        this.jumpForce = -400;
+        this.speed = 100;
+        this.jumpForce = -300;
         this.isGrounded = false;
 
         // ===== AJUSTE LA HITBOX =====

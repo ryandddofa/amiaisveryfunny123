@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "map1.tmx",
+    "activeFile": "level2.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -21,11 +21,54 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "level1.tmx": {
+            "scale": 1.1578125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 313.5222672064778,
+                "y": 159.78407557354927
+            }
+        },
+        "level1.tmx#tileset1": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#tileset2": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#tileset3": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#tileset4": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#tileset5": {
+            "scaleInDock": 1
+        },
+        "level2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 502.66666666666663,
+                "y": 277.33333333333326
+            }
+        },
+        "level2.tmx#tileset2": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#tileset3": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#tileset4": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#tileset5": {
+            "scaleInDock": 1
+        },
         "map1.tmx": {
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1150,
+                "x": 1357.3333333333333,
                 "y": 477.33333333333326
             }
         },
@@ -39,23 +82,25 @@
             "scaleInDock": 1
         }
     },
-    "last.exportedFilePath": "C:/Users/rwnd/Desktop/amiaisveryfunny123/tiled",
+    "last.exportedFilePath": "C:/Users/rwnd/Desktop/amiaisveryfunny123/public/assets/levels",
     "last.imagePath": "C:/Users/rwnd/Desktop/amiaisveryfunny123/tiled",
+    "map.height": 10,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
-    "map.width": 60,
+    "map.width": 30,
     "openFiles": [
-        "map1.tmx",
-        "GandalfHardcore city tiles 32x32.tsx",
-        "Decoration 32x32.tsx",
-        "City background.tsx"
+        "level1.tmx",
+        "level2.tmx"
     ],
     "project": "amiaisveryfunny123.tiled-project",
     "recentFiles": [
+        "level1.tmx",
+        "level2.tmx",
         "City background.tsx",
         "Decoration 32x32.tsx",
         "GandalfHardcore city tiles 32x32.tsx",
         "map1.tmx"
     ],
+    "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx"
 }

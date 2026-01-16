@@ -48,3 +48,6 @@ Très important aussi, ne me fait pas d'artefacts/documents Claude, donne moi le
 * Scène 6 (Le bus) / mario style obby
 * Scène 7 (La maison de Amia) / Visual novel style, seulement dialogues et tweens/timeline
 * Scène 8 (Fin/la maison de Amia) / mario style obby boss fight funny similaire à bowser
+
+
+boutton de map avec les différents niveau/emplacement selon st-eustache feu avec confirmation qui highlight le lieu au tap

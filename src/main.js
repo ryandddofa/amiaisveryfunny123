@@ -25,7 +25,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 800 },
-      debug: false  // ← Change à false pour production
+      debug: true  // ← Change à false pour production
     }
   },
   scale: {
@@ -33,7 +33,6 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   scene: [
-
     MenuScene,      // Commence par le menu
     Intro1Scene,
     Intro2Scene,
