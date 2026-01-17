@@ -7,18 +7,19 @@ export default class Scene7 extends Phaser.Scene {
 
     preload() {
         // Charger le fond
-        this.load.image('intro2', 'assets/backgrounds/intro2.png');
+        this.load.image('scene7', 'assets/backgrounds/scene7.png');
 
         // Charger les sprites des personnages
         this.load.spritesheet('amia', 'assets/amia.png', { frameWidth: 48, frameHeight: 64 });
         this.load.spritesheet('ryan', 'assets/ryan.png', { frameWidth: 48, frameHeight: 64 });
         this.load.spritesheet('gia', 'assets/gia.png', { frameWidth: 45, frameHeight: 27 });
+        this.load.spritesheet('funny', 'assets/funny.png', { frameWidth: 57, frameHeight: 56 });
 
         // Charger les portraits des personnages
         // Amia portraits
         this.load.image('a4', 'assets/portraits/a4.png');
         this.load.image('a1', 'assets/portraits/a1.png');
-        this.load.image('a1', 'assets/portraits/a1.png');
+        this.load.image('a2', 'assets/portraits/a2.png');
         this.load.image('a3', 'assets/portraits/a3.png');
 
         // Ryan portraits
@@ -34,48 +35,64 @@ export default class Scene7 extends Phaser.Scene {
     }
 
     create() {
+        const wipeRect = this.add.rectangle(320, 180, 640, 360, 0x000000);
+        wipeRect.setDepth(1000);
+
+        this.tweens.add({
+            targets: wipeRect,
+            x: 960, // Hors écran à droite
+            duration: 800,
+            ease: 'Power2',
+            onComplete: () => {
+                wipeRect.destroy();
+            }
+        });
         // Fond
-        this.add.image(320, 180, 'intro2').setDisplaySize(640, 360);
+        this.add.image(320, 180, 'scene7').setDisplaySize(640, 360);
 
         // Position des personnages
-        const amia = this.add.sprite(200, 200, 'amia', 0).setScale(2);
-        const ryan = this.add.sprite(320, 200, 'ryan', 0).setScale(2);
-        const gia = this.add.sprite(440, 240, 'gia', 0).setScale(2);
+        const amia = this.add.sprite(150, 130, 'amia', 0).setScale(4);
+        const ryan = this.add.sprite(410, 220, 'ryan', 0).setScale(4);
+        const gia = this.add.sprite(120, 220, 'gia', 0).setScale(2.75);
+        const funny = this.add.sprite(560, 140, 'funny', 0).setScale(5);
+        this.amia = amia;
+        this.ryan = ryan;
+        this.gia = gia;
+        this.gia.setFlipX(true);
+        this.funny = funny;
+        this.funny.setFrame(3);
+        this.ryan.setDepth(4);
 
         // Boîte de dialogue (en bas de l'écran)
         this.createDialogBox();
 
         // Séquence de dialogues avec couleurs
         this.dialogues = [
-            { speaker: '', text: 'Outside the McDonald\'s...', color: '#ebebeb' },
-            { speaker: '', text: '*KABOOM* *KABOOM*', color: '#ebebeb' },
-            { speaker: 'Amia', text: 'What is happening oh my god!!', color: '#ff69b4', portrait: 'a1' },
-            { speaker: 'Ryan', text: 'WHAT THE FUCK', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: '', text: 'Arrived at Amia\'s house...', color: '#ebebeb' },
             { speaker: 'Gia', text: 'WOFO OWFOOOWF', color: '#ffff00', portrait: 'gia-portrait' },
-            { speaker: '', text: 'You could hear screams and explosions from afar. The explosions seemed to get closer and closer.', color: '#ebebeb' },
+            { speaker: '', text: '*KABOOM*', color: '#ebebeb', animId: 1 },
+            { speaker: 'Amia', text: 'GIVE ME BACK RYAN!!!', color: '#ff69b4', portrait: 'a2' },
+            { speaker: 'Ryan', text: 'AMIA HELP SHES TICKLING ME', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: 'Funny', text: 'Meow.', color: '#f33b3b', portrait: 'f1' },
             { speaker: 'Gia', text: 'WOOF WOOO FOW OFOOWOOF WOOF', color: '#ffff00', portrait: 'gia-portrait' },
-            { speaker: 'Ryan', text: 'LOOK, FROM AFAR!!! IS THAT...', color: '#4643ec', portrait: 'ryan-portrait' },
-            { speaker: 'Amia', text: 'HOLY SHIT', color: '#ff69b4', portrait: 'a2' },
-            { speaker: 'Ryan', text: 'IS THAT FUCKING GODZILLA WHAT THE FUCK', color: '#4643ec', portrait: 'ryan-portrait' },
-            { speaker: '', text: 'A giant cat started getting closer to them.', color: '#ebebeb' },
-            { speaker: 'Funny', text: 'Meow.', color: '#f33b3b', portrait: 'f1' },
-            { speaker: 'Amia', text: 'bro it\'s your cat', color: '#ff69b4', portrait: 'a1' },
-            { speaker: 'Gia', text: 'WOOO FOW OFOOWOOF WOOF WOOF WOOO FOW OFOOWOOF WOOF ', color: '#ffff00', portrait: 'gia-portrait' },
-            { speaker: 'Ryan', text: 'FUNNY????? WHAT IS FUNNY DOING THERE??', color: '#4643ec', portrait: 'ryan-portrait' },
-            { speaker: 'Funny', text: 'Meow.', color: '#f33b3b', portrait: 'f1' },
-            { speaker: 'Amia', text: 'MOST IMPORTANTLY WHY IS SHE THE SIZE OF DYLAN AND DESTROYING THE CITY???', color: '#ff69b4', portrait: 'a1' },
-            { speaker: 'Gia', text: 'WOOF!!!!!', color: '#ffff00', portrait: 'gia-portrait' },
-            { speaker: '', text: '*BOOM*', color: '#ebebeb' },
-            { speaker: 'Amia', text: 'AHHHHHHHHHHHHHHH NOOOO RYANNN!!!!', color: '#ff69b4', portrait: 'a2' },
-            { speaker: 'Ryan', text: 'YO FUNNY STOP IT TICKLES BRO', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: 'Ryan', text: 'Is it me or Gia is tryna say something?..', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: 'Amia', text: 'She can\'t even speak bro', color: '#ff69b4', portrait: 'a1' },
+            { speaker: 'Gia', text: 'uhhhh yes i can?', color: '#ffff00', portrait: 'gia-portrait' },
+            { speaker: 'Amia', text: '???????', color: '#ff69b4', portrait: 'a1' },
             { speaker: '', text: '*KABOOOOM*', color: '#ebebeb' },
-            { speaker: 'Gia', text: 'ong she fine', color: '#ffff00', portrait: 'gia-portrait' },
-            { speaker: 'Amia', text: 'gia bro', color: '#ff69b4', portrait: 'a1' },
-            { speaker: 'Ryan', text: 'HELP ME AHHHHHHHHHHHH', color: '#4643ec', portrait: 'ryan-portrait' },
-            { speaker: 'Funny', text: 'Meow.', color: '#f33b3b', portrait: 'f1' },
-            { speaker: 'Amia', text: 'RYAN NO COMEBACK!!!!', color: '#ff69b4', portrait: 'a1' },
-            { speaker: 'Amia', text: 'I will save you Ryan...', color: '#ff69b4', portrait: 'a1' },
-            { speaker: '', text: 'And so she follows Funny the giant destroying cat.', color: '#ebebeb' },
+            { speaker: 'Gia', text: 'OKAY OKAY OKAY I ADMIT IT IT WAS ME', color: '#ffff00', portrait: 'gia-portrait', },
+            { speaker: 'Amia', text: 'WHAT DO YOU MEAN IT WAS YOU WTF ARE YOU TALKING ABOUT GIA', color: '#ff69b4', portrait: 'a2' },
+            { speaker: 'Ryan', text: 'GIA SINCE WHEN CAN YOU SPEAK BRO SERIOUSLY', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: 'Gia', text: 'I wanted to rizz her...', color: '#ffff00', portrait: 'gia-portrait', },
+            { speaker: 'Gia', text: 'And so I proposed her some mint milkshake from McDonald\'s...', color: '#ffff00', portrait: 'gia-portrait', },
+            { speaker: 'Amia', text: 'YOU WHAT?!!!!!', color: '#ff69b4', portrait: 'a2' },
+            { speaker: 'Ryan', text: 'GIA YOU\'RE GAY????', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: 'Gia', text: 'what are you homophobic', color: '#ffff00', portrait: 'gia-portrait', },
+            { speaker: 'Funny', text: 'Meow. (I am)', color: '#f33b3b', portrait: 'f3' },
+            { speaker: 'Amia', text: 'ANYWAYS WE NEED TO SAVE RYAN AND TURN FUNNY BACK TO NORMAL!', color: '#ff69b4', portrait: 'a2' },
+            { speaker: 'Ryan', text: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA', color: '#4643ec', portrait: 'ryan-portrait' },
+            { speaker: 'Gia', text: 'WOOF WOOO FOWWOOF!!!', color: '#ffff00', portrait: 'gia-portrait' },
+            { speaker: '', text: 'And so the fight with giant Funny began...', color: '#ebebeb', },
         ];
 
         this.currentDialogueIndex = 0;
@@ -88,7 +105,19 @@ export default class Scene7 extends Phaser.Scene {
                 this.showNextDialogue();
             } else {
                 // Fin de la scène, passer à la suivante
-                this.scene.start('Level1Scene');
+                // Fin de la scène, passer à la suivante
+                const wipeRect = this.add.rectangle(-640, 180, 640, 360, 0x000000);
+                wipeRect.setDepth(1000); // Au-dessus de tout
+
+                this.tweens.add({
+                    targets: wipeRect,
+                    x: 320, // Centre de l'écran
+                    duration: 800,
+                    ease: 'Power2',
+                    onComplete: () => {
+                        this.scene.start('BossFightScene');
+                    }
+                });
             }
         });
     }
@@ -197,8 +226,101 @@ export default class Scene7 extends Phaser.Scene {
         graphics.setDepth(2);
     }
 
+    startCharacterTween(characterSprite) {
+        // Arrêter tous les tweens précédents sur ce sprite
+        this.tweens.killTweensOf(characterSprite);
+
+        // Petit mouvement de rotation
+        this.tweens.add({
+            targets: characterSprite,
+            angle: 3, // Rotation de 3 degrés
+            duration: 500,
+            yoyo: true,
+            repeat: -1, // Répète à l'infini
+            ease: 'Sine.easeInOut'
+        });
+
+        // Petit mouvement vertical
+        this.tweens.add({
+            targets: characterSprite,
+            y: characterSprite.y - 5,
+            duration: 600,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+    }
+
+    stopCharacterTween(characterSprite) {
+        // Arrêter les tweens
+        this.tweens.killTweensOf(characterSprite);
+
+        // Remettre à la position/rotation normale
+        this.tweens.add({
+            targets: characterSprite,
+            angle: 0,
+            y: characterSprite.y, // Retour à la position originale
+            duration: 200,
+            ease: 'Power2'
+        });
+    }
+
+    triggerExplosionFlash() {
+        // Screen shake
+        this.cameras.main.shake(500, 0.01); // durée 500ms, intensité 0.01
+
+        // Flash blanc (optionnel, pour plus d'impact)
+        this.cameras.main.flash(200, 255, 255, 255); // durée 200ms, couleur blanche
+    }
+
+    triggerExplosion() {
+        // Screen shake
+        this.cameras.main.shake(500, 0.01); // durée 500ms, intensité 0.01
+    }
+
+    triggerAnimation(animId) {
+        if (animId === 1) {
+            this.funny.setFrame(2);
+        } else if (animId === 2) {
+            // Funny se rapproche (à 300)
+            this.tweens.add({
+                targets: this.funny,
+                x: 300,
+                duration: 800,
+                ease: 'Power2',
+                persist: true
+            });
+        }
+    }
+
     showNextDialogue() {
         const dialogue = this.dialogues[this.currentDialogueIndex];
+
+        this.stopCharacterTween(this.amia);
+        this.stopCharacterTween(this.ryan);
+        this.stopCharacterTween(this.gia);
+        // Démarrer le tween pour le personnage qui parle
+        if (dialogue.speaker === 'Amia') {
+            this.startCharacterTween(this.amia);
+        } else if (dialogue.speaker === 'Ryan') {
+            this.startCharacterTween(this.ryan);
+        } else if (dialogue.speaker === 'Gia') {
+            this.startCharacterTween(this.gia);
+        }
+
+        // Déclencher l'explosion pour les dialogues BOOM/KABOOM
+        if (dialogue.text.includes('BOOM') || dialogue.text.includes('KABOOM')) {
+            this.triggerExplosionFlash();
+        }
+        // Déclencher l'explosion pour les dialogues BOOM/KABOOM
+        if (dialogue.text.includes('KABOOOOM') || dialogue.text.includes('KABOOOM')) {
+            this.triggerExplosion();
+        }
+
+        // Déclencher l'animation si elle existe
+        if (dialogue.animId) {
+            this.triggerAnimation(dialogue.animId);
+        }
 
         // Mettre à jour le nom avec la couleur appropriée
         this.speakerText.setText(dialogue.speaker);
@@ -221,18 +343,27 @@ export default class Scene7 extends Phaser.Scene {
         this.dialogText.setText(dialogue.text);
 
         // Mettre à jour le portrait - utilise le portrait spécifié dans le dialogue
-        this.characterPortrait.setTexture(dialogue.portrait);
-        this.characterPortrait.setVisible(true);
-        this.portraitFrame.setVisible(true);
+        if (dialogue.speaker === '') {
+            // Pas de speaker = cacher le portrait et le frame
+            this.characterPortrait.setVisible(false);
+            this.portraitFrame.setVisible(false);
+            this.speakerBox.setVisible(false);
+        } else {
+            // Il y a un speaker = afficher le portrait
+            this.characterPortrait.setTexture(dialogue.portrait);
+            this.characterPortrait.setVisible(true);
+            this.portraitFrame.setVisible(true);
+            this.speakerBox.setVisible(true);
 
-        // Animation d'apparition du portrait
-        this.characterPortrait.setScale(0.5);
-        this.tweens.add({
-            targets: this.characterPortrait,
-            scale: 0.45,
-            duration: 200,
-            ease: 'Back.easeOut'
-        });
+            // Animation d'apparition du portrait
+            this.characterPortrait.setScale(0.5);
+            this.tweens.add({
+                targets: this.characterPortrait,
+                scale: 0.45,
+                duration: 200,
+                ease: 'Back.easeOut'
+            });
+        }
     }
 
     getColorFromHex(hexString) {

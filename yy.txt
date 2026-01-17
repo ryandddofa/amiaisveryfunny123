@@ -39,15 +39,21 @@ un ramen, ce qui rend le chat normal, et libère Ryan.
 
 Très important aussi, ne me fait pas d'artefacts/documents Claude, donne moi les morceaux de code séparément.
 
-* Menu principal
-* Scène 1 (Intro/au McDonald's) / Visual novel style, seulement dialogues et tweens/timeline
-* Scène 2 (Intro/Dehors le McDonald's, là où ryan se fait kidnapper) / Visual novel style, seulement dialogues et tweens/timeline
-* Scène 3 (Allée derrière le McDonald's) / Le jeu commence; mario style obby
-* Scène 4 (Le parc) / mario style obby
+x Menu principal
+x Scène 1 (Intro/au McDonald's) / Visual novel style, seulement dialogues et tweens/timeline
+x Scène 2 (Intro/Dehors le McDonald's, là où ryan se fait kidnapper) / Visual novel style, seulement dialogues et tweens/timeline
+x Scène 3 (Allée derrière le McDonald's) / Le jeu commence; mario style obby
+x Scène 4 (Le parc) / mario style obby
 * Scène 5 (Maison de Ryan) / mario style obby
 * Scène 6 (Le bus) / mario style obby
-* Scène 7 (La maison de Amia) / Visual novel style, seulement dialogues et tweens/timeline
+x Scène 7 (La maison de Amia) / Visual novel style, seulement dialogues et tweens/timeline
 * Scène 8 (Fin/la maison de Amia) / mario style obby boss fight funny similaire à bowser
 
 
 boutton de map avec les différents niveau/emplacement selon st-eustache feu avec confirmation qui highlight le lieu au tap
+
+manque à en ordre :
+- photo chambre ryan + faire level3 (+ trouver tileset chambre pour la map)
+- photo bus + faire level4 (potentiellement trouver tileset pour la map)
+- photo chambre amia + ajouter à bgimg de scene7
+- faire bossfightscene

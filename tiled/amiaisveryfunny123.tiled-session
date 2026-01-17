@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level2.tmx",
+    "activeFile": "level3.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -25,8 +25,8 @@
             "scale": 1.1578125,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 313.5222672064778,
-                "y": 159.78407557354927
+                "x": 320,
+                "y": 159.35222672064776
             }
         },
         "level1.tmx#tileset1": {
@@ -64,6 +64,20 @@
         "level2.tmx#tileset5": {
             "scaleInDock": 1
         },
+        "level3.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 646,
+                "y": 160
+            }
+        },
+        "level3.tmx#tileset4": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#tileset6": {
+            "scaleInDock": 1
+        },
         "map1.tmx": {
             "scale": 0.75,
             "selectedLayer": 2,
@@ -87,15 +101,17 @@
     "map.height": 10,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
-    "map.width": 30,
+    "map.width": 40,
     "openFiles": [
         "level1.tmx",
-        "level2.tmx"
+        "level2.tmx",
+        "level3.tmx"
     ],
     "project": "amiaisveryfunny123.tiled-project",
     "recentFiles": [
         "level1.tmx",
         "level2.tmx",
+        "level3.tmx",
         "City background.tsx",
         "Decoration 32x32.tsx",
         "GandalfHardcore city tiles 32x32.tsx",

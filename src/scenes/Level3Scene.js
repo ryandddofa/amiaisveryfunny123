@@ -39,6 +39,7 @@ export default class Level3Scene extends Phaser.Scene {
         this.load.image('tileset3', 'assets/tilesets/tileset3.png');
         this.load.image('tileset4', 'assets/tilesets/tileset4.png');
         this.load.image('tileset5', 'assets/tilesets/tileset5.png');
+        this.load.image('tileset6', 'assets/tilesets/tileset6.png');
     }
 
     create() {
@@ -52,7 +53,7 @@ export default class Level3Scene extends Phaser.Scene {
         this.createTilemap();
 
         // Créer le joueur
-        this.player = new Player(this, 100, 200);
+        this.player = new Player(this, 40, 200); // était 40 200
 
         this.gia = new Gia(this, this.player);
         // Collision de Gia avec le sol (optionnel)
@@ -67,10 +68,24 @@ export default class Level3Scene extends Phaser.Scene {
 
         this.createEnemies();
 
+        // Créer la trigger zone
+        this.triggerZone = this.add.rectangle(668, 100, 32, 32, 0x00ff00, 0); //metre a 0
+
+        this.physics.add.existing(this.triggerZone);
+        this.triggerZone.body.setAllowGravity(false);
+        this.triggerZone.body.moves = false;
+
+        // Variable pour tracker si le dialogue a été déclenché
+        this.dialogueTriggered = false;
+        this.dialogueActive = false;
+
+        // Collision avec la zone
+        this.physics.add.overlap(this.player, this.triggerZone, this.onTriggerEnter, null, this);
+
         // Setup caméra
         const mapWidth = this.map.widthInPixels;
         const mapHeight = this.map.heightInPixels;
-        this.cameras.main.setZoom(3.5);
+        this.cameras.main.setZoom(2.25);
         this.cameras.main.setBounds(0, 0, mapWidth, mapHeight);
         this.cameras.main.startFollow(this.player, true, 0.15, 0.15);
         this.physics.world.setBounds(0, 0, mapWidth, mapHeight);
@@ -151,13 +166,14 @@ export default class Level3Scene extends Phaser.Scene {
         const tileset3 = this.map.addTilesetImage('tileset3', 'tileset3');
         const tileset4 = this.map.addTilesetImage('tileset4', 'tileset4');
         const tileset5 = this.map.addTilesetImage('tileset5', 'tileset5');
+        const tileset6 = this.map.addTilesetImage('tileset6', 'tileset6');
 
-        this.bgLayer = this.map.createLayer('bg', [tileset1, tileset2, tileset3, tileset4, tileset5], 0, 0);
-        this.surfLayer = this.map.createLayer('surf', [tileset1, tileset2, tileset3, tileset4, tileset5], 0, 0);
-        this.surf2Layer = this.map.createLayer('surf2', [tileset1, tileset2, tileset3, tileset4, tileset5], 0, 0);
-        this.surf3Layer = this.map.createLayer('surf3', [tileset1, tileset2, tileset3, tileset4, tileset5], 0, 0);
-        this.top1Layer = this.map.createLayer('top1', [tileset1, tileset2, tileset3, tileset4, tileset5], 0, 0);
-        this.top2Layer = this.map.createLayer('top2', [tileset1, tileset2, tileset3, tileset4, tileset5], 0, 0);
+        this.bgLayer = this.map.createLayer('bg', [tileset1, tileset2, tileset3, tileset4, tileset5, tileset6], 0, 0);
+        this.surfLayer = this.map.createLayer('surf', [tileset1, tileset2, tileset3, tileset4, tileset5, tileset6], 0, 0);
+        this.surf2Layer = this.map.createLayer('surf2', [tileset1, tileset2, tileset3, tileset4, tileset5, tileset6], 0, 0);
+        this.surf3Layer = this.map.createLayer('surf3', [tileset1, tileset2, tileset3, tileset4, tileset5, tileset6], 0, 0);
+        this.top1Layer = this.map.createLayer('top1', [tileset1, tileset2, tileset3, tileset4, tileset5, tileset6], 0, 0);
+        this.top2Layer = this.map.createLayer('top2', [tileset1, tileset2, tileset3, tileset4, tileset5, tileset6], 0, 0);
 
         this.collisionLayer = this.physics.add.staticGroup();
 
@@ -182,13 +198,15 @@ export default class Level3Scene extends Phaser.Scene {
         this.minicats = this.physics.add.group();
 
         // Créer 3 minicats avec différentes teintes et positions
-        const minicat1 = new MiniCat(this, 250, 204, 0x4538ff); // Rouge
-        const minicat2 = new MiniCat(this, 350, 204, 0xf838ff); // Cyan
-        const minicat3 = new MiniCat(this, 750, 204, 0x9bff38); // Jaune
+        const minicat1 = new MiniCat(this, 60, 0, 0xffa07a); // Rouge
+        const minicat2 = new MiniCat(this, 210, 0, 0x7affe7); // Cyan
+        const minicat3 = new MiniCat(this, 600, 0, 0xbc63ff); // Jaune
+        const minicat4 = new MiniCat(this, 900, 0, 0xdbff63); // Jaune
 
         this.minicats.add(minicat1);
         this.minicats.add(minicat2);
         this.minicats.add(minicat3);
+        this.minicats.add(minicat4);
 
         // Collision minicats avec le sol
         if (this.collisionLayer) {
@@ -197,6 +215,71 @@ export default class Level3Scene extends Phaser.Scene {
 
         // Collision joueur avec minicats
         this.physics.add.overlap(this.player, this.minicats, this.handlePlayerEnemyCollision, null, this);
+    }
+
+    onTriggerEnter() {
+        if (!this.dialogueTriggered) {
+            this.dialogueTriggered = true;
+            this.showTriggerDialogue();
+        }
+    }
+
+    showTriggerDialogue() {
+        this.dialogueActive = true;
+
+        // Pause le jeu
+        this.physics.pause();
+
+        // Créer la dialogue box
+        const boxWidth = 180;
+        const boxHeight = 35;
+        const boxX = 320;
+        const boxY = 220;
+
+        const mainBox = this.add.graphics();
+        mainBox.fillStyle(0xfff5f8, 1);
+        mainBox.fillRoundedRect(boxX - boxWidth / 2, boxY - boxHeight / 2, boxWidth, boxHeight, 12);
+        mainBox.lineStyle(3, 0xffb3d9, 1);
+        mainBox.strokeRoundedRect(boxX - boxWidth / 2, boxY - boxHeight / 2, boxWidth, boxHeight, 12);
+        mainBox.lineStyle(2, 0xffffff, 1);
+        mainBox.strokeRoundedRect(boxX - boxWidth / 2 + 2, boxY - boxHeight / 2 + 2, boxWidth - 4, boxHeight - 4, 10);
+        mainBox.setScrollFactor(0); // Fixe à l'écran
+        mainBox.setDepth(1000);
+
+        const dialogText = this.add.text(boxX, boxY, 'Why is there a Mint Milkshake in Ryan\'s bedroom?.. He hates mint...', {
+            fontSize: '8px',
+            color: '#2c2c2c',
+            wordWrap: { width: boxWidth - 30 },
+            resolution: 2,
+            fontFamily: 'Arial, sans-serif',
+            align: 'center',
+            lineSpacing: 3
+        }).setOrigin(0.5);
+        dialogText.setScrollFactor(0);
+        dialogText.setDepth(1001);
+
+        // Stocker pour les détruire plus tard
+        this.tempDialogBox = mainBox;
+        this.tempDialogText = dialogText;
+
+        // Click pour fermer
+        this.input.once('pointerdown', () => {
+            this.closeTriggerDialogue();
+        });
+    }
+
+    closeTriggerDialogue() {
+        this.dialogueActive = false;
+
+        // Détruire les éléments du dialogue
+        if (this.tempDialogBox) this.tempDialogBox.destroy();
+        if (this.tempDialogText) this.tempDialogText.destroy();
+
+        // Reprendre le jeu
+        this.physics.resume();
+
+        // Optionnel: détruire la zone trigger pour qu'elle ne se déclenche plus
+        this.triggerZone.destroy();
     }
 
     handlePlayerEnemyCollision(player, enemy) {
@@ -215,7 +298,7 @@ export default class Level3Scene extends Phaser.Scene {
 
     respawnPlayer() {
         // Téléporter le joueur au début
-        this.player.setPosition(100, 200);
+        this.player.setPosition(20, 200);
         this.player.setVelocity(0, 0);
     }
 
@@ -223,8 +306,10 @@ export default class Level3Scene extends Phaser.Scene {
         if (this.player) {
             this.player.update(time, delta);
 
+            if (this.player.y > 300) { this.respawnPlayer(); }
+
             // Vérifier si le joueur atteint la fin (map fait 640 de width)
-            if (this.checkLevelEnd && this.player.x > 900) { // ← Change 1800 à 600
+            if (this.checkLevelEnd && this.player.x > 1220) { // ← Change 1800 à 600
                 this.checkLevelEnd = false;
                 this.scene.stop('UIScene');
                 const wipeRect = this.add.rectangle(-640, 180, 640, 360, 0x000000);

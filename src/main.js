@@ -33,12 +33,13 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   scene: [
+    Level3Scene,
     MenuScene,      // Commence par le menu
     Intro1Scene,
     Intro2Scene,
     Level1Scene,
     Level2Scene,
-    Level3Scene,
+
     Level4Scene,
     Scene7,
     BossFightScene,
