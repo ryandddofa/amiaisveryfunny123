@@ -48,12 +48,13 @@ x Scène 4 (Le parc) / mario style obby
 * Scène 6 (Le bus) / mario style obby
 x Scène 7 (La maison de Amia) / Visual novel style, seulement dialogues et tweens/timeline
 * Scène 8 (Fin/la maison de Amia) / mario style obby boss fight funny similaire à bowser
+* scène 9 new (Épilogue) / jsp
 
 
 boutton de map avec les différents niveau/emplacement selon st-eustache feu avec confirmation qui highlight le lieu au tap
 
 manque à en ordre :
-- photo chambre ryan + faire level3 (+ trouver tileset chambre pour la map)
-- photo bus + faire level4 (potentiellement trouver tileset pour la map)
+- photo bus + faire level4
 - photo chambre amia + ajouter à bgimg de scene7
-- faire bossfightscene
+- faire bossfightscene (map tiled + bossfight)
+- prologue
