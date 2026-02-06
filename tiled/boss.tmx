@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="10" height="5" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="8">
+ <tileset firstgid="1" name="tileset6" tilewidth="32" tileheight="32" tilecount="153" columns="9">
+  <image source="tileset6.png" width="288" height="544"/>
+ </tileset>
+ <layer id="1" name="top2" width="10" height="5">
+  <data encoding="csv">
+0,55,0,0,0,0,0,0,0,0,
+0,23,24,25,0,0,0,0,2,0,
+0,0,0,0,0,0,0,23,24,25,
+0,0,0,0,2,2,0,0,0,0,
+64,66,0,64,65,65,66,0,64,66
+</data>
+ </layer>
+ <objectgroup id="3" name="collisions">
+  <object id="1" x="47.051" y="31.7238" width="78.7747" height="15.6837"/>
+  <object id="2" x="238.463" y="64.8733" width="69.8635" height="9.26761"/>
+  <object id="3" x="93.7455" y="129.39" width="125.113" height="13.1885"/>
+  <object id="4" x="0" y="128.677" width="61.6653" height="14.2579"/>
+  <object id="6" x="246.305" y="129.747" width="79.4876" height="13.1885"/>
+  <object id="7" x="212.799" y="129.39" width="12.1192" height="11.0498"/>
+ </objectgroup>
+</map>

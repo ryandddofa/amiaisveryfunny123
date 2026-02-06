@@ -8,6 +8,8 @@ import Level3Scene from './scenes/Level3Scene.js';
 import Level4Scene from './scenes/Level4Scene.js';
 import Scene7 from './scenes/Scene7.js';
 import BossFightScene from './scenes/BossFightScene.js';
+import Epilogue from './scenes/Epilogue.js';
+import DeathScene from './scenes/DeathScene.js';
 import UIScene from './scenes/UIScene.js';
 import GameScene from './scenes/GameScene.js'; // Garde pour test
 
@@ -33,7 +35,7 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   scene: [
-
+    BossFightScene,
     MenuScene,      // Commence par le menu
     Intro1Scene,
     Intro2Scene,
@@ -42,7 +44,9 @@ const config = {
     Level3Scene,
     Level4Scene,
     Scene7,
-    BossFightScene,
+
+    DeathScene,
+    Epilogue,
     UIScene,
     GameScene       // Pour test
   ]

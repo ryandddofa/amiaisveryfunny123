@@ -54,7 +54,6 @@ x Scène 7 (La maison de Amia) / Visual novel style, seulement dialogues et twee
 boutton de map avec les différents niveau/emplacement selon st-eustache feu avec confirmation qui highlight le lieu au tap
 
 manque à en ordre :
-- photo bus + faire level4
 - photo chambre amia + ajouter à bgimg de scene7
 - faire bossfightscene (map tiled + bossfight)
 - prologue
