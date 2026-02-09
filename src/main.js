@@ -35,7 +35,6 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   scene: [
-    Scene7,
     MenuScene,
     Intro1Scene,
     Intro2Scene,
@@ -43,7 +42,7 @@ const config = {
     Level2Scene,
     Level3Scene,
     Level4Scene,
-
+    Scene7,
     BossFightScene,
     DeathScene,
     Epilogue,

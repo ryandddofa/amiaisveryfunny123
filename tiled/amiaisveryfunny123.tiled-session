@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "boss.tmx",
+    "activeFile": "level4.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -93,11 +93,11 @@
             "scaleInDock": 1
         },
         "level4.tmx": {
-            "scale": 0.75,
+            "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 576,
-                "y": 159.33333333333334
+                "x": 389.75,
+                "y": 44.25
             }
         },
         "level4.tmx#tileset4": {
@@ -142,8 +142,8 @@
         "level1.tmx",
         "level2.tmx",
         "level3.tmx",
-        "level4.tmx",
         "boss.tmx",
+        "level4.tmx",
         "City background.tsx",
         "Decoration 32x32.tsx",
         "GandalfHardcore city tiles 32x32.tsx",
