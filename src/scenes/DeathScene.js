@@ -10,19 +10,23 @@ export default class DeathScene extends Phaser.Scene {
         this.add.rectangle(320, 180, 640, 360, 0x000000);
 
         // Texte "YOU DIED"
-        this.add.text(320, 120, 'YOU DIED', {
+        this.add.text(320, 120, 'YOU LOST LOOOOL', {
             fontSize: '48px',
             color: '#ff0000',
             fontStyle: 'bold',
             stroke: '#000000',
-            strokeThickness: 6
+            strokeThickness: 6,
+            fontFamily: 'Arial, sans-serif',
+            resolution: 2
         }).setOrigin(0.5);
 
         // Texte "Tap to retry"
         const retryText = this.add.text(320, 220, 'TAP TO RETRY', {
             fontSize: '24px',
             color: '#ffffff',
-            fontStyle: 'bold'
+            fontStyle: 'bold',
+            fontFamily: 'Arial, sans-serif',
+            resolution: 2
         }).setOrigin(0.5);
 
         // Tween clignotant

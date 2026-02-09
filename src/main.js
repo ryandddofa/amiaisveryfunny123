@@ -27,7 +27,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 800 },
-      debug: true  // ← Change à false pour production
+      debug: false
     }
   },
   scale: {
@@ -35,16 +35,16 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   scene: [
-    BossFightScene,
-    MenuScene,      // Commence par le menu
+    Scene7,
+    MenuScene,
     Intro1Scene,
     Intro2Scene,
     Level1Scene,
     Level2Scene,
     Level3Scene,
     Level4Scene,
-    Scene7,
 
+    BossFightScene,
     DeathScene,
     Epilogue,
     UIScene,

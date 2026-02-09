@@ -8,7 +8,7 @@ export default class BossFightScene extends Phaser.Scene {
 
     preload() {
         // Charger le fond
-        this.load.image('alley-bg', 'assets/backgrounds/alley-bg.png');
+        this.load.image('alley-bg', 'assets/backgrounds/boss.png');
 
         // Charger les sprites
         this.load.spritesheet('amia', 'assets/amia.png', { frameWidth: 48, frameHeight: 64 });
@@ -31,7 +31,7 @@ export default class BossFightScene extends Phaser.Scene {
         this.createAnimations();
 
         // Image de fond
-        this.bg = this.add.image(0, 0, 'alley-bg').setOrigin(0, 0).setScrollFactor(0.3);
+        this.bg = this.add.image(150, 0, 'alley-bg').setOrigin(0, 0).setScrollFactor(0.3).setScale(0.8);
 
         // Créer la tilemap
         this.createTilemap();
@@ -65,6 +65,10 @@ export default class BossFightScene extends Phaser.Scene {
         // ===== SETUP DU BOSS =====
         this.createBoss();
         this.createBossHealthBar();
+
+
+        this.scheduleMeow();
+
 
         // Variables du boss
         this.bossHealth = 3;
@@ -181,7 +185,8 @@ export default class BossFightScene extends Phaser.Scene {
             fontStyle: 'bold',
             fontFamily: 'Arial, sans-serif',
             stroke: '#000000',
-            strokeThickness: 2
+            strokeThickness: 2,
+            resolution: 2,
         }).setOrigin(0.5);
         this.bossNameText.setScrollFactor(0);
         this.bossNameText.setDepth(1002);
@@ -226,6 +231,25 @@ export default class BossFightScene extends Phaser.Scene {
             yoyo: true,
             repeat: 3
         });
+
+        // ===== AJOUTE: Flash blanc de l'écran =====
+        const flash = this.add.rectangle(320, 180, 640, 360, 0xffffff, 0);
+        flash.setScrollFactor(0);
+        flash.setDepth(1500);
+        flash.setScale(40)
+
+        this.tweens.add({
+            targets: flash,
+            alpha: 0.6,
+            duration: 300,
+            yoyo: true,
+            onComplete: () => {
+                flash.destroy();
+            }
+        });
+
+        // ===== AJOUTE: Shake de la caméra =====
+        this.cameras.main.shake(300, 0.001); // durée 200ms, intensité 0.005
 
         // Mettre à jour la barre de vie
         this.updateBossHealthBar();
@@ -330,6 +354,56 @@ export default class BossFightScene extends Phaser.Scene {
             scale: 0,
             duration: 1000,
             ease: 'Power2'
+        });
+    }
+
+    scheduleMeow() {
+        // Délai aléatoire entre 3 et 6 secondes
+        const delay = Phaser.Math.Between(6000, 11000);
+
+        this.time.delayedCall(delay, () => {
+            this.spawnMeow();
+            this.scheduleMeow(); // Re-planifier le prochain meow
+        });
+    }
+
+    spawnMeow() {
+        if (!this.funny || this.bossHealth <= 0) return; // Ne pas meow si mort
+
+        // Position aléatoire autour de Funny
+        const offsetX = Phaser.Math.Between(-30, 30);
+        const offsetY = Phaser.Math.Between(-20, 20);
+
+        const meowX = this.funny.x + offsetX;
+        const meowY = this.funny.y + offsetY;
+
+        // Variations de "meow"
+        const meowVariations = ['Meow.', 'Meow.', 'meow', 'meow.', 'Meow'];
+        const randomMeow = Phaser.Math.RND.pick(meowVariations);
+
+        // Créer le texte
+        const meowText = this.add.text(meowX, meowY, randomMeow, {
+            fontSize: '6px',
+            color: '#ffffff',
+            fontStyle: 'bold',
+            stroke: '#000000',
+            fontFamily: 'Arial, sans-serif',
+            strokeThickness: 1,
+            resolution: 2
+        }).setOrigin(0.5);
+
+        meowText.setDepth(500);
+
+        // Animation: monte vers le haut + fadeout
+        this.tweens.add({
+            targets: meowText,
+            y: meowY - 10, // Monte de 30 pixels
+            alpha: 0,      // Fade out
+            duration: 2500,
+            ease: 'Sine.easeOut',
+            onComplete: () => {
+                meowText.destroy();
+            }
         });
     }
 

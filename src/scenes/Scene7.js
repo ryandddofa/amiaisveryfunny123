@@ -7,7 +7,7 @@ export default class Scene7 extends Phaser.Scene {
 
     preload() {
         // Charger le fond
-        this.load.image('scene7', 'assets/backgrounds/scene7.png');
+        this.load.image('boss', 'assets/backgrounds/boss.png');
 
         // Charger les sprites des personnages
         this.load.spritesheet('amia', 'assets/amia.png', { frameWidth: 48, frameHeight: 64 });
@@ -48,7 +48,7 @@ export default class Scene7 extends Phaser.Scene {
             }
         });
         // Fond
-        this.add.image(320, 180, 'scene7').setDisplaySize(640, 360);
+        this.add.image(640, 200, 'boss').setDisplaySize(640, 360).setOrigin(0.5).setScale(2);
 
         // Position des personnages
         const amia = this.add.sprite(150, 130, 'amia', 0).setScale(4);

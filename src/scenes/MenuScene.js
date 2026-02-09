@@ -14,15 +14,29 @@ export default class MenuScene extends Phaser.Scene {
     create() {
         // Fond
         const bg = this.add.image(320, 180, 'menu-bg').setDisplaySize(640, 360);
-        bg.setAlpha(0.75);
+        bg.setAlpha(1);
         bg.setOrigin(0.5);
+
+        let hue = 0;
+        this.time.addEvent({
+            delay: 38, // Mise à jour toutes les 50ms
+            callback: () => {
+                hue += 2; // Augmente la teinte
+                if (hue >= 360) hue = 0; // Reset après un cycle complet
+
+                // Convertir HSV en couleur pour setTint
+                const color = Phaser.Display.Color.HSVToRGB(hue / 360, 1, 1);
+                bg.setTint(color.color);
+            },
+            loop: true
+        });
 
         // Logo centré
         const logo = this.add.image(320, 180, 'menu-logo');
 
         // Texte "Tap to start" avec tween d'opacité
         const startText = this.add.text(320, 280, 'tap to start playing cawliss', {
-            fontSize: '16px',
+            fontSize: '18px',
             color: '#ffffff',
             fontFamily: 'Arial, sans-serif',
             resolution: 2,

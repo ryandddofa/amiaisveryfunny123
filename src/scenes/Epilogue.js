@@ -7,37 +7,38 @@ export default class Epilogue extends Phaser.Scene {
 
     create() {
         // Fond
-        this.add.rectangle(320, 180, 640, 360, 0xffd4ed);
+        this.add.rectangle(320, 180, 640, 360, 0xfef7ff);
 
         // Titre
-        this.add.text(320, 80, 'HAPPY VALENTINE\'S DAY!', {
+        this.add.text(320, 80, 'HAPPY VALENTINE\'S DAY AMIA!!!', {
             fontSize: '32px',
-            color: '#ff1493',
+            color: '#ff6cba',
             fontStyle: 'bold',
             stroke: '#ffffff',
-            strokeThickness: 4
+            strokeThickness: 4,
+            fontFamily: 'Arial, sans-serif',
+            resolution: 2
         }).setOrigin(0.5);
 
         // Message
-        this.add.text(320, 180, 'Amia saved Ryan!\nFunny is back to normal!\nAll thanks to... ramen?', {
-            fontSize: '16px',
+        this.add.text(320, 180, 'Amia saved Ryan!\nFunny is back to normal!\nWOOOHOHOHOHOHOHOH', {
+            fontSize: '24px',
             color: '#2c2c2c',
             align: 'center',
-            lineSpacing: 8
-        }).setOrigin(0.5);
-
-        // Crédits
-        this.add.text(320, 280, 'Made with ❤️ for Valentine\'s Day 2025', {
-            fontSize: '14px',
-            color: '#ff69b4',
-            fontStyle: 'italic'
+            fontStyle: 'bold',
+            lineSpacing: 5,
+            fontFamily: 'Arial, sans-serif',
+            resolution: 2
         }).setOrigin(0.5);
 
         // Tap pour recommencer
         const restartText = this.add.text(320, 320, 'TAP TO PLAY AGAIN', {
             fontSize: '16px',
-            color: '#ffffff',
-            fontStyle: 'bold'
+            color: '#2d252b',
+            fontStyle: 'bold',
+            fontFamily: 'Arial, sans-serif',
+            resolution: 2
+
         }).setOrigin(0.5);
 
         this.tweens.add({

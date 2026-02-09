@@ -16,16 +16,19 @@ export default class UIScene extends Phaser.Scene {
 
   createJumpButton() {
     const graphics = this.add.graphics();
-    graphics.fillStyle(0xff0000, 0.5);
+    graphics.fillStyle(0x00006f, 0.5);
     graphics.fillCircle(560, 280, 40);
     graphics.lineStyle(3, 0xffffff, 1);
     graphics.strokeCircle(560, 280, 40);
 
     // Texte sur le bouton
-    this.add.text(560, 260, '↑', {
+    this.add.text(560, 270, '↑', {
       fontSize: '68px',
-      color: '#ffffff',
       fontStyle: 'bold',
+      fontFamily: 'Arial, sans-serif',
+      stroke: '#000000',
+      color: '#ffffff',
+      strokeThickness: 2,
       resolution: 2,
     }).setOrigin(0.5);
 
